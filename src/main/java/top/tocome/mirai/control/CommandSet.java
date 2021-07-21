@@ -43,13 +43,11 @@ public class CommandSet extends Command {
     protected void matchAction(String message) {
         if (message.startsWith(secondRegex)) {
             message = message.replaceFirst(Command.secondRegex, "").trim();
-            boolean matched = false;
             for (Command c : commands) {
                 if (c.match(message))
-                    matched = true;
+                    return;
             }
-            if (!matched)
-                component.getSubject().sendMessage(Command.startRegex + "error:no such command");
+            component.getSubject().sendMessage(Command.startRegex + "error:no such command");
         } else {
             super.matchAction(message);
         }
