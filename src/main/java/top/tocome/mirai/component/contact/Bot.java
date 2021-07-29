@@ -9,6 +9,8 @@ import top.tocome.mirai.component.ContactComponent;
 import top.tocome.mirai.component.contact.manager.FriendManager;
 import top.tocome.mirai.component.contact.manager.GroupManager;
 
+import java.util.ArrayList;
+
 public class Bot extends ContactComponent {
 
     public Bot(long id) {
@@ -17,6 +19,7 @@ public class Bot extends ContactComponent {
 
     @Override
     protected void init() {
+        attachedComponents = new ArrayList<>();
         attachedComponents.add(new GroupManager());
         attachedComponents.add(new FriendManager());
     }

@@ -23,7 +23,7 @@ public abstract class ContactComponent extends AttachedComponent {
     /**
      * 附着的组件
      */
-    protected ArrayList<AttachedComponent> attachedComponents = new ArrayList<>();
+    protected ArrayList<AttachedComponent> attachedComponents;
 
     @Override
     protected boolean common() {
