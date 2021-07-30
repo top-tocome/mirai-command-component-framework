@@ -9,7 +9,7 @@ import top.tocome.mirai.component.contact.Group;
 public class GroupManager extends ContactComponent.Manager {
 
     @Override
-    protected void init() {
+    protected void commandInit() {
 
     }
 

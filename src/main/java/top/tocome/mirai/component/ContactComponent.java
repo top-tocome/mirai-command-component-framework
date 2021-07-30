@@ -9,6 +9,7 @@ public abstract class ContactComponent extends AttachedComponent {
 
     public ContactComponent(long id) {
         this.id = id;
+        attachedComponents = new ArrayList<>();
     }
 
     /**

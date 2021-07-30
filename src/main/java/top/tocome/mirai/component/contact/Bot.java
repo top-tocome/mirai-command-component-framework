@@ -8,6 +8,7 @@ import net.mamoe.mirai.event.events.GroupEvent;
 import top.tocome.mirai.component.ContactComponent;
 import top.tocome.mirai.component.contact.manager.FriendManager;
 import top.tocome.mirai.component.contact.manager.GroupManager;
+import top.tocome.mirai.control.CommandSet;
 
 import java.util.ArrayList;
 
@@ -15,13 +16,13 @@ public class Bot extends ContactComponent {
 
     public Bot(long id) {
         super(id);
+        attachedComponents.add(new GroupManager());
+        attachedComponents.add(new FriendManager());
     }
 
     @Override
-    protected void init() {
-        attachedComponents = new ArrayList<>();
-        attachedComponents.add(new GroupManager());
-        attachedComponents.add(new FriendManager());
+    protected void commandInit() {
+
     }
 
     private BotEvent event;

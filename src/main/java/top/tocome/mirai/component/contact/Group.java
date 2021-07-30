@@ -14,8 +14,8 @@ public class Group extends ContactComponent {
     }
 
     @Override
-    protected void init() {
-        attachedComponents = new ArrayList<>();
+    protected void commandInit() {
+
     }
 
     private GroupEvent event;

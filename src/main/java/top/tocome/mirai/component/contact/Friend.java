@@ -14,8 +14,8 @@ public class Friend extends ContactComponent {
     }
 
     @Override
-    protected void init() {
-        attachedComponents = new ArrayList<>();
+    protected void commandInit() {
+
     }
 
     private FriendEvent event;

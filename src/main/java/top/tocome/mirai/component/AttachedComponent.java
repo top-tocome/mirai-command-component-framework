@@ -10,7 +10,7 @@ import top.tocome.mirai.control.CommandSet;
 public abstract class AttachedComponent extends AbstractComponent {
 
     public AttachedComponent() {
-        init();
+        commandInit();
     }
 
     /**
@@ -18,7 +18,7 @@ public abstract class AttachedComponent extends AbstractComponent {
      *
      * @implSpec 指令集的初始化
      */
-    protected abstract void init();
+    protected abstract void commandInit();
 
     /**
      * 指令集

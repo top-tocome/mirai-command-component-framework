@@ -16,7 +16,7 @@ public final class BotManager extends ContactComponent.Manager {
     }
 
     @Override
-    protected void init() {
+    protected void commandInit() {
 
     }
 

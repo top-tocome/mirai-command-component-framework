@@ -9,7 +9,7 @@ import net.mamoe.mirai.event.events.FriendEvent;
 public class FriendManager extends ContactComponent.Manager {
 
     @Override
-    protected void init() {
+    protected void commandInit() {
 
     }
 
