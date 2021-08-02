@@ -3,9 +3,10 @@ package top.tocome.mirai.component;
 import net.mamoe.mirai.event.Event;
 
 /**
- * 基础组件
+ * 抽象基础组件
+ * 可开关组件
  */
-public abstract class AbstractComponent {
+public abstract class AbstractComponent implements Component {
 
     /**
      * 组件的开关
@@ -17,9 +18,7 @@ public abstract class AbstractComponent {
         this.active = active;
     }
 
-    /**
-     * 调用该组件
-     */
+    @Override
     public boolean invoke(Event event) {
         if (!active) return disable();
         else if (setEventType(event))
