@@ -25,6 +25,11 @@ public class FriendManager extends ContactComponent.Manager {
     }
 
     @Override
+    protected boolean commandNext(String commandMessage) {
+        return getContact(getSubject().getId()).invoke(event, commandMessage);
+    }
+
+    @Override
     protected boolean disable() {
         return false;
     }
@@ -35,13 +40,8 @@ public class FriendManager extends ContactComponent.Manager {
     }
 
     @Override
-    protected Event getEvent() {
-        return event;
-    }
-
-    @Override
-    public ContactComponent add(long id) {
-        Friend friend = new Friend(id);
+    public ContactComponent add() {
+        Friend friend = new Friend(getSubject().getId());
         contacts.add(friend);
         return friend;
     }

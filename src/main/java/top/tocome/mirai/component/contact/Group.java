@@ -3,6 +3,7 @@ package top.tocome.mirai.component.contact;
 import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.GroupEvent;
+import top.tocome.mirai.component.AttachedComponent;
 import top.tocome.mirai.component.ContactComponent;
 
 import java.util.ArrayList;
@@ -26,8 +27,13 @@ public class Group extends ContactComponent {
         return true;
     }
 
+    protected final ArrayList<AttachedComponent> attachedComponents = new ArrayList<>();
+
     @Override
-    protected boolean disable() {
+    protected boolean commandNext(String commandMessage) {
+        for (AttachedComponent attachedComponent : attachedComponents) {
+            if (attachedComponent.invoke(event, commandMessage)) return true;
+        }
         return false;
     }
 
@@ -37,8 +43,7 @@ public class Group extends ContactComponent {
     }
 
     @Override
-    protected Event getEvent() {
-        return event;
+    protected boolean disable() {
+        return false;
     }
-
 }

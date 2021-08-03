@@ -24,6 +24,12 @@ public class GroupManager extends ContactComponent.Manager {
         return false;
     }
 
+
+    @Override
+    protected boolean commandNext(String commandMessage) {
+        return getContact(getSubject().getId()).invoke(event, commandMessage);
+    }
+
     @Override
     protected boolean disable() {
         return false;
@@ -35,13 +41,8 @@ public class GroupManager extends ContactComponent.Manager {
     }
 
     @Override
-    protected Event getEvent() {
-        return event;
-    }
-
-    @Override
-    public ContactComponent add(long id) {
-        Group group = new Group(id);
+    public ContactComponent add() {
+        Group group = new Group(getSubject().getId());
         contacts.add(group);
         return group;
     }

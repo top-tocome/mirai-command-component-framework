@@ -29,13 +29,8 @@ public final class BotManager extends ContactComponent.Manager {
     }
 
     @Override
-    protected boolean common() {
-        return getContact(event.getBot().getId()).invoke(getEvent());
-    }
-
-    @Override
-    protected boolean commandNext() {
-        return getContact(event.getBot().getId()).invoke(getEvent(), commandMessage);
+    protected boolean commandNext(String commandMessage) {
+        return getContact(event.getBot().getId()).invoke(event, commandMessage);
     }
 
     @Override
@@ -53,13 +48,8 @@ public final class BotManager extends ContactComponent.Manager {
     }
 
     @Override
-    protected Event getEvent() {
-        return event;
-    }
-
-    @Override
-    public ContactComponent add(long id) {
-        Bot bot = new Bot(id);
+    public ContactComponent add() {
+        Bot bot = new Bot(event.getBot().getId());
         contacts.add(bot);
         return bot;
     }

@@ -8,16 +8,11 @@ import net.mamoe.mirai.event.events.GroupEvent;
 import top.tocome.mirai.component.ContactComponent;
 import top.tocome.mirai.component.contact.manager.FriendManager;
 import top.tocome.mirai.component.contact.manager.GroupManager;
-import top.tocome.mirai.control.CommandSet;
-
-import java.util.ArrayList;
 
 public class Bot extends ContactComponent {
 
     public Bot(long id) {
         super(id);
-        attachedComponents.add(new GroupManager());
-        attachedComponents.add(new FriendManager());
     }
 
     @Override
@@ -33,9 +28,16 @@ public class Bot extends ContactComponent {
         return true;
     }
 
+    private final GroupManager groupManager = new GroupManager();
+    private final FriendManager friendManager = new FriendManager();
+
     @Override
-    protected boolean disable() {
-        return false;
+    protected boolean commandNext(String commandMessage) {
+        if (event instanceof GroupEvent)
+            return groupManager.invoke(event, commandMessage);
+        else if (event instanceof FriendEvent)
+            return friendManager.invoke(event, commandMessage);
+        else return false;
     }
 
     @Override
@@ -48,8 +50,7 @@ public class Bot extends ContactComponent {
     }
 
     @Override
-    protected Event getEvent() {
-        return event;
+    protected boolean disable() {
+        return false;
     }
-
 }
