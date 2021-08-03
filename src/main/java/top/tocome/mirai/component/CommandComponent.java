@@ -74,5 +74,5 @@ public abstract class CommandComponent extends AbstractComponent {
      *
      * @apiNote 主要供指令action发送bot消息
      */
-    protected abstract Contact getSubject();
+    public abstract Contact getSubject();
 }

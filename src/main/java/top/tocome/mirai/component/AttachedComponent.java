@@ -26,7 +26,7 @@ public abstract class AttachedComponent extends CommandComponent {
     }
 
     @Override
-    protected Contact getSubject() {
+    public Contact getSubject() {
         return event.getSubject();
     }
 }
