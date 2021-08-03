@@ -30,17 +30,6 @@ public class Command {
     }
 
     /**
-     * 供构造二级及以下指令使用
-     *
-     * @param key    指令关键词
-     * @param action 指令行为
-     */
-    Command(String key, Action action) {
-        this.key = key;
-        this.action = action;
-    }
-
-    /**
      * 属于哪一个命令组件
      */
     protected CommandComponent component;
@@ -65,6 +54,12 @@ public class Command {
      */
     protected String describe = "";
 
+    /**
+     * 匹配指令
+     *
+     * @param message 指令消息
+     * @return 匹配结果
+     */
     public boolean match(String message) {
         if (message.startsWith(key)) {
             matchAction(message.replaceFirst(key, "").trim());
@@ -73,6 +68,11 @@ public class Command {
         return false;
     }
 
+    /**
+     * 匹配成功后的行为
+     *
+     * @param message 参数消息
+     */
     protected void matchAction(String message) {
         String[] params = getParams(message);
         if (params.length == paramsHint.length) {
@@ -81,10 +81,20 @@ public class Command {
             component.getSubject().sendMessage(startRegex + "error:params not match\n");
     }
 
+    /**
+     * 获取整条指令完整描述
+     *
+     * @return 完整描述
+     */
     protected String getHelp() {
         return getKey() + showParamsHint() + describeRegex + describe + "\n";
     }
 
+    /**
+     * 获取完整的指令关键词
+     *
+     * @return 完整的指令关键词
+     */
     protected String getKey() {
         if (parentSet == null) {
             return startRegex + key;
@@ -92,11 +102,22 @@ public class Command {
         return parentSet.getKey() + secondRegex + key;
     }
 
+    /**
+     * 解析参数
+     *
+     * @param message 参数消息
+     * @return 参数
+     */
     protected String[] getParams(String message) {
         if (message.equals("")) return new String[0];
         return message.split(paramRegex);
     }
 
+    /**
+     * 参数展示
+     *
+     * @return 参数要求
+     */
     protected String showParamsHint() {
         StringBuilder sb = new StringBuilder();
         for (String param : paramsHint)
@@ -104,6 +125,31 @@ public class Command {
         return sb.toString().replaceFirst(paramRegex, "  ") + "  ";
     }
 
+    /**
+     * 设置参数
+     *
+     * @param params 指令参数
+     * @return 自身
+     */
+    public Command params(String[] params) {
+        paramsHint = params;
+        return this;
+    }
+
+    /**
+     * 设置描述
+     *
+     * @param describe 指令描述
+     * @return 自身
+     */
+    public Command describe(String describe) {
+        this.describe = describe;
+        return this;
+    }
+
+    /**
+     * 指令行为接口
+     */
     public interface Action {
         void run(String[] params);
     }
