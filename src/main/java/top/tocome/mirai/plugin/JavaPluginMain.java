@@ -5,7 +5,10 @@ import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 import net.mamoe.mirai.event.GlobalEventChannel;
 import net.mamoe.mirai.event.events.BotEvent;
 import net.mamoe.mirai.event.events.MessageEvent;
+import top.tocome.mirai.component.attached.KeyWord;
+import top.tocome.mirai.component.attached.Repeat;
 import top.tocome.mirai.component.contact.manager.BotManager;
+import top.tocome.mirai.component.util.ComponentFactory;
 import top.tocome.mirai.control.Command;
 
 public final class JavaPluginMain extends JavaPlugin {
@@ -20,14 +23,16 @@ public final class JavaPluginMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getLogger().info("top.tocome.mirai.plugin load");
         GlobalEventChannel.INSTANCE.subscribeAlways(BotEvent.class,
                 event -> {
                     if (event instanceof MessageEvent) {//检测指令系统
                         String message = ((MessageEvent) event).getMessage().serializeToMiraiCode().trim();
-                        if (message.startsWith(Command.startRegex))
+                        if (message.startsWith(Command.startRegex)) {
                             BotManager.Instance.invoke(event,
                                     message.replaceFirst(Command.startRegex, "").trim());
-                        return;
+                            return;
+                        }
                     }
                     BotManager.Instance.invoke(event);
                 });
