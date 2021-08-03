@@ -23,7 +23,7 @@ public class Command {
      */
     public static String describeRegex = "%";
 
-    public Command(CommandComponent component, String key, Action action) {
+    protected Command(CommandComponent component, String key, Action action) {
         this.component = component;
         this.key = key;
         this.action = action;
@@ -123,28 +123,6 @@ public class Command {
         for (String param : paramsHint)
             sb.append(paramRegex).append(param);
         return sb.toString().replaceFirst(paramRegex, "  ") + "  ";
-    }
-
-    /**
-     * 设置参数
-     *
-     * @param params 指令参数
-     * @return 自身
-     */
-    public Command params(String[] params) {
-        paramsHint = params;
-        return this;
-    }
-
-    /**
-     * 设置描述
-     *
-     * @param describe 指令描述
-     * @return 自身
-     */
-    public Command describe(String describe) {
-        this.describe = describe;
-        return this;
     }
 
     /**
