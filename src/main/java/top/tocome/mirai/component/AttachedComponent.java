@@ -26,11 +26,6 @@ public abstract class AttachedComponent extends CommandComponent {
     }
 
     @Override
-    protected boolean disable() {
-        return false;
-    }
-
-    @Override
     protected Contact getSubject() {
         return event.getSubject();
     }
