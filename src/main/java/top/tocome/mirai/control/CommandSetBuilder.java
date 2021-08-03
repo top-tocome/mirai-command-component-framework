@@ -29,11 +29,11 @@ public class CommandSetBuilder {
     }
 
     public CommandSetBuilder newCommand(String key, Command.Action action) {
-        return newCommand(key, "", new String[0], action);
+        return newCommand(key, "", new String[1], action);
     }
 
     public CommandSetBuilder newCommand(String key, String describe, Command.Action action) {
-        return newCommand(key, describe, new String[0], action);
+        return newCommand(key, describe, new String[1], action);
     }
 
     public CommandSetBuilder newCommand(String key, String describe, String[] paramsHint, Command.Action action) {

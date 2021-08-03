@@ -47,8 +47,9 @@ public class Command {
     protected CommandSet parentSet = null;
     /**
      * 指令参数个数
+     * 默认一个参数
      */
-    protected String[] paramsHint = new String[0];
+    protected String[] paramsHint = new String[1];
     /**
      * 指令描述
      */
@@ -74,7 +75,10 @@ public class Command {
      * @param message 参数消息
      */
     protected void matchAction(String message) {
-        String[] params = getParams(message);
+        String[] params = message.split(paramRegex);
+        for (int i = 0; i < params.length; i++) {
+            params[i] = params[i].trim();
+        }
         if (params.length == paramsHint.length) {
             action.run(params);
         } else
@@ -100,17 +104,6 @@ public class Command {
             return startRegex + key;
         }
         return parentSet.getKey() + secondRegex + key;
-    }
-
-    /**
-     * 解析参数
-     *
-     * @param message 参数消息
-     * @return 参数
-     */
-    protected String[] getParams(String message) {
-        if (message.equals("")) return new String[0];
-        return message.split(paramRegex);
     }
 
     /**

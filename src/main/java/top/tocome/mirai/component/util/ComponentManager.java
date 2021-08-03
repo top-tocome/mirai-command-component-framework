@@ -15,14 +15,23 @@ public class ComponentManager extends AttachedComponent {
     @Override
     protected void commandInit() {
         commandSet = new CommandSetBuilder(this, "cm").describe("组件管理器")
-                .newCommand("list", "列出已有组件",
-                        params -> getSubject().sendMessage(component.getComponents().toString()))
-                .newCommand("listAll", "列出所有组件",
-                        params -> getSubject().sendMessage(ComponentFactory.Instance.list()))
+                .newCommand("list", "列出已有组件", new String[]{"<level>[all,none]"},
+                        params -> {
+                            if (params[0].equals("all"))
+                                getSubject().sendMessage(ComponentFactory.Instance.list());
+                            else
+                                getSubject().sendMessage(component.getComponents().toString());
+                        })
                 .newCommand("add", "添加<num>号组件", new String[]{"<num>"},
-                        params -> component.getComponents().add(ComponentFactory.Instance.newComponent(Integer.parseInt(params[0]))))
+                        params -> {
+                            component.getComponents().add(ComponentFactory.Instance.newComponent(Integer.parseInt(params[0])));
+                            getSubject().sendMessage("添加成功");
+                        })
                 .newCommand("remove", "移除<num>号组件", new String[]{"<num>"},
-                        params -> component.getComponents().remove(Integer.parseInt(params[0])))
+                        params -> {
+                            component.getComponents().remove(Integer.parseInt(params[0]));
+                            getSubject().sendMessage("移除成功");
+                        })
                 .build();
     }
 

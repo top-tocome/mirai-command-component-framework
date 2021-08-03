@@ -27,8 +27,10 @@ public final class ComponentFactory {
 
     protected String list() {
         StringBuilder stringBuilder = new StringBuilder("Components:\n");
+        int i = 0;
         for (Class<? extends AttachedComponent> c : classs) {
-            stringBuilder.append(c.getName()).append("\n");
+            stringBuilder.append(i).append(c.getSimpleName()).append("\n");
+            i++;
         }
         return stringBuilder.toString();
     }
