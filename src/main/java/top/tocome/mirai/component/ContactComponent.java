@@ -1,5 +1,7 @@
 package top.tocome.mirai.component;
 
+import top.tocome.mirai.component.util.ComponentManager;
+
 import java.util.ArrayList;
 
 /**
@@ -10,6 +12,8 @@ public abstract class ContactComponent extends CommandComponent {
 
     public ContactComponent(long id) {
         this.id = id;
+        attachedComponents = new ArrayList<>();
+        attachedComponents.add(new ComponentManager(this));
     }
 
     /**
@@ -19,6 +23,15 @@ public abstract class ContactComponent extends CommandComponent {
 
     public long getId() {
         return id;
+    }
+
+    /**
+     * 附着的组件
+     */
+    protected final ArrayList<AttachedComponent> attachedComponents;
+
+    public ArrayList<AttachedComponent> getComponents() {
+        return attachedComponents;
     }
 
     @Override

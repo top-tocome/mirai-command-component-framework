@@ -6,8 +6,6 @@ import net.mamoe.mirai.event.events.GroupEvent;
 import top.tocome.mirai.component.AttachedComponent;
 import top.tocome.mirai.component.ContactComponent;
 
-import java.util.ArrayList;
-
 public class Group extends ContactComponent {
 
     public Group(long id) {
@@ -26,8 +24,6 @@ public class Group extends ContactComponent {
         this.event = (GroupEvent) event;
         return true;
     }
-
-    protected final ArrayList<AttachedComponent> attachedComponents = new ArrayList<>();
 
     @Override
     protected boolean commandNext(String commandMessage) {

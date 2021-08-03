@@ -6,8 +6,6 @@ import net.mamoe.mirai.event.events.FriendEvent;
 import top.tocome.mirai.component.AttachedComponent;
 import top.tocome.mirai.component.ContactComponent;
 
-import java.util.ArrayList;
-
 public class Friend extends ContactComponent {
 
     public Friend(long id) {
@@ -27,8 +25,6 @@ public class Friend extends ContactComponent {
         return true;
     }
 
-
-    protected final ArrayList<AttachedComponent> attachedComponents = new ArrayList<>();
 
     @Override
     protected boolean commandNext(String commandMessage) {
