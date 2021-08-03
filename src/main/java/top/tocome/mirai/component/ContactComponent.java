@@ -4,78 +4,63 @@ import java.util.ArrayList;
 
 /**
  * 联系人组件
+ * Bot或User
  */
-public abstract class ContactComponent extends AttachedComponent {
+public abstract class ContactComponent extends CommandComponent {
 
     public ContactComponent(long id) {
         this.id = id;
-        attachedComponents = new ArrayList<>();
     }
 
     /**
      * 联系人账号id
      */
-    protected long id;
+    private final long id;
 
     public long getId() {
         return id;
     }
 
-    /**
-     * 附着的组件
-     */
-    protected ArrayList<AttachedComponent> attachedComponents;
-
     @Override
     protected boolean common() {
-        for (AttachedComponent attachedComponent : attachedComponents) {
-            if (attachedComponent.invoke(getEvent())) return true;
-        }
-        return false;
-    }
-
-    @Override
-    protected boolean commandNext() {
-        for (AttachedComponent attachedComponent : attachedComponents) {
-            if (attachedComponent.invoke(getEvent(), commandMessage)) return true;
-        }
-        return false;
+        return commandNext(null);
     }
 
     /**
      * 联系人管理型组件
      * 记录每个用户对此bot的使用状态
      */
-    public abstract static class Manager extends AttachedComponent {
-        /**
-         * 已使用该机器人的名单
-         */
-        protected ArrayList<ContactComponent> contacts = new ArrayList<>();
+    public abstract static class Manager extends CommandComponent {
 
+        /**
+         * 已使用的联系人名单
+         */
+        protected final ArrayList<ContactComponent> contacts = new ArrayList<>();
+
+        /**
+         * 获取联系人
+         *
+         * @param id 联系人id
+         * @return 联系人，不存在则创建新联系人
+         */
         protected ContactComponent getContact(long id) {
             for (ContactComponent contact : contacts) {
                 if (contact.getId() == id) {
                     return contact;
                 }
             }
-            return add(id);
+            return add();
         }
 
         /**
-         * 添加新使用者
+         * 添加新联系人
          */
-        public abstract ContactComponent add(long id);
+        protected abstract ContactComponent add();
 
         @Override
         protected boolean common() {
-            return getContact(getSubject().getId()).invoke(getEvent());
+            return commandNext(null);
         }
-
-        @Override
-        protected boolean commandNext() {
-            return getContact(getSubject().getId()).invoke(getEvent(), commandMessage);
-        }
-
     }
 }
 
