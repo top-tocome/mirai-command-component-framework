@@ -49,7 +49,7 @@ public class Command {
      * 指令参数个数
      * 默认一个参数
      */
-    protected String[] paramsHint = new String[1];
+    protected String[] paramsHint = new String[]{""};
     /**
      * 指令描述
      */
