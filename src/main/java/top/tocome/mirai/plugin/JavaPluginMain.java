@@ -19,6 +19,8 @@ public final class JavaPluginMain extends JavaPlugin {
                 .author("tocome")
                 .build()
         );
+        ComponentFactory.Instance.load(Repeat.class);
+        ComponentFactory.Instance.load(KeyWord.class);
     }
 
     @Override
