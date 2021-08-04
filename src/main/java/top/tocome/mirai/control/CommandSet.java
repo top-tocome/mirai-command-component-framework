@@ -13,18 +13,19 @@ public class CommandSet extends Command {
         super(component, key, null);
         commands = new ArrayList<>();
         action = params -> {
+            component.getSubject().sendMessage(getDefaultHint());
+        };
+        addCommand(new CommandBuilder(component, "help", params -> {
             StringBuilder help = new StringBuilder(getHelp());
             for (Command c : commands) {
                 help.append(c.getHelp());
             }
             component.getSubject().sendMessage(help.toString());
-        };
-        addCommand(new CommandBuilder(component, "help", action)
-                .describe("获取帮助")
-                .build());
-        addCommand(new CommandBuilder(component, "stop", params -> component.setActive(false))
-                .describe("停用该组件")
-                .build());
+        }).describe("获取帮助").build());
+        addCommand(new CommandBuilder(component, "stop", params -> {
+            component.setActive(false);
+            component.getSubject().sendMessage("停用成功");
+        }).describe("停用该组件").build());
     }
 
     protected final ArrayList<Command> commands;

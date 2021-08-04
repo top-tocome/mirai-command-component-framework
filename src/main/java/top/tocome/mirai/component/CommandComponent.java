@@ -27,7 +27,7 @@ public abstract class CommandComponent extends AbstractComponent {
     /**
      * 指令消息内容
      */
-    private String commandMessage;
+    protected String commandMessage;
 
     /**
      * 调用该组件

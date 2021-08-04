@@ -13,7 +13,10 @@ public class Repeat extends AttachedComponent {
         commandSet = new CommandSetBuilder(this, "repeat").describe("复读")
                 .paramsHint(new String[]{"<content>"})
                 .action(params -> {
-                    getSubject().sendMessage(params[0]);
+                    if (params[0].equals(""))
+                        getSubject().sendMessage(commandSet.getDefaultHint());
+                    else
+                        getSubject().sendMessage(params[0]);
                 }).build();
 
     }
@@ -21,18 +24,15 @@ public class Repeat extends AttachedComponent {
     @Override
     protected boolean common() {
         String message = event.getMessage().serializeToMiraiCode();
-        if (message.equals(lastMessage) && !message.equals(lastRepeat)) {
+        if (message.equals(lastMessage)) {
             event.getSubject().sendMessage(event.getMessage());
             lastRepeat = message;
+        } else if (message.equals(lastRepeat)) {
+            event.getSubject().sendMessage("打断复读");
+            lastMessage = null;
         } else {
             lastMessage = message;
         }
-        return false;
-    }
-
-
-    @Override
-    protected boolean disable() {
         return false;
     }
 }

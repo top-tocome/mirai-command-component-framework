@@ -3,6 +3,7 @@ package top.tocome.mirai.component;
 import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.MessageEvent;
+import top.tocome.mirai.control.Command;
 
 /**
  * 附加功能型组件
@@ -28,5 +29,19 @@ public abstract class AttachedComponent extends CommandComponent {
     @Override
     public Contact getSubject() {
         return event.getSubject();
+    }
+
+    @Override
+    protected boolean disable() {
+        if (commandMessage == null) return false;
+        if (commandMessage.equals(commandSet.getKey() + Command.secondRegex + "start")) {
+            setActive(true);
+            getSubject().sendMessage(commandSet.getKey() + "启动成功");
+            return true;
+        } else if (commandMessage.equals(commandSet.getKey())) {
+            getSubject().sendMessage("该组件已停用，请输入\n"
+                    + commandSet.getKey() + Command.secondRegex + "start\n" + "重新启用");
+        }
+        return false;
     }
 }

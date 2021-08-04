@@ -70,10 +70,4 @@ public final class KeyWord extends AttachedComponent {
         }
         return false;
     }
-
-    @Override
-    protected boolean disable() {
-        return false;
-    }
-
 }

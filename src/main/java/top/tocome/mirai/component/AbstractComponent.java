@@ -20,9 +20,9 @@ public abstract class AbstractComponent implements Component {
 
     @Override
     public boolean invoke(Event event) {
-        if (!active) return disable();
-        else if (setEventType(event))
-            return enable();
+        if (setEventType(event))
+            if (!active) return disable();
+            else return enable();
         return false;
     }
 

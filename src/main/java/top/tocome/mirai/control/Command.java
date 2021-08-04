@@ -91,7 +91,11 @@ public class Command {
      * @return 完整描述
      */
     protected String getHelp() {
-        return getKey() + showParamsHint() + describeRegex + describe + "\n";
+        return getKey() + showParamsHint() + getDescribe() + "\n";
+    }
+
+    protected String getDescribe() {
+        return describeRegex + describe;
     }
 
     /**
@@ -99,11 +103,15 @@ public class Command {
      *
      * @return 完整的指令关键词
      */
-    protected String getKey() {
+    public String getKey() {
         if (parentSet == null) {
             return startRegex + key;
         }
         return parentSet.getKey() + secondRegex + key;
+    }
+
+    public String getDefaultHint() {
+        return getHelp() + "输入 " + getKey() + Command.secondRegex + "help获取帮助";
     }
 
     /**
