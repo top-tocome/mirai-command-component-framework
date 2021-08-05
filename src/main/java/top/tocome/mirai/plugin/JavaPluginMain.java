@@ -10,6 +10,7 @@ import top.tocome.mirai.component.attached.Repeat;
 import top.tocome.mirai.component.contact.manager.BotManager;
 import top.tocome.mirai.component.util.ComponentFactory;
 import top.tocome.mirai.control.Command;
+import top.tocome.mirai.util.Logger;
 
 public final class JavaPluginMain extends JavaPlugin {
     public static final JavaPluginMain INSTANCE = new JavaPluginMain(); // 必须 public static, 必须名为 INSTANCE
@@ -25,7 +26,7 @@ public final class JavaPluginMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().info("top.tocome.mirai.plugin load");
+        Logger.info("top.tocome.mirai.plugin load");
         GlobalEventChannel.INSTANCE.subscribeAlways(BotEvent.class,
                 event -> {
                     if (event instanceof MessageEvent) {//检测指令系统
