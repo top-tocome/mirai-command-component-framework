@@ -1,14 +1,14 @@
 package top.tocome.mirai.component.util;
 
 import top.tocome.mirai.component.AttachedComponent;
-import top.tocome.mirai.component.ContactComponent;
+import top.tocome.mirai.component.contact.Contact;
 import top.tocome.mirai.control.CommandSetBuilder;
 
 public class ComponentManager extends AttachedComponent {
 
-    ContactComponent component;
+    Contact component;
 
-    public ComponentManager(ContactComponent component) {
+    public ComponentManager(Contact component) {
         this.component = component;
     }
 

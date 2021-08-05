@@ -1,12 +1,10 @@
 package top.tocome.mirai.component.contact;
 
-import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.GroupEvent;
 import top.tocome.mirai.component.AttachedComponent;
-import top.tocome.mirai.component.ContactComponent;
 
-public class Group extends ContactComponent {
+public class Group extends Contact {
 
     public Group(long id) {
         super(id);
@@ -34,7 +32,7 @@ public class Group extends ContactComponent {
     }
 
     @Override
-    public Contact getSubject() {
+    public net.mamoe.mirai.contact.Contact getSubject() {
         return event.getGroup();
     }
 

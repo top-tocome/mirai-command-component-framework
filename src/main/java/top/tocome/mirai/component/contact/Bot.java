@@ -5,11 +5,10 @@ import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.BotEvent;
 import net.mamoe.mirai.event.events.FriendEvent;
 import net.mamoe.mirai.event.events.GroupEvent;
-import top.tocome.mirai.component.ContactComponent;
 import top.tocome.mirai.component.contact.manager.FriendManager;
 import top.tocome.mirai.component.contact.manager.GroupManager;
 
-public class Bot extends ContactComponent {
+public class Bot extends ContactOrBot {
 
     public Bot(long id) {
         super(id);

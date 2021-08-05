@@ -1,12 +1,11 @@
 package top.tocome.mirai.component.contact;
 
-import net.mamoe.mirai.contact.Contact;
+
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.FriendEvent;
 import top.tocome.mirai.component.AttachedComponent;
-import top.tocome.mirai.component.ContactComponent;
 
-public class Friend extends ContactComponent {
+public class Friend extends Contact {
 
     public Friend(long id) {
         super(id);
@@ -35,7 +34,7 @@ public class Friend extends ContactComponent {
     }
 
     @Override
-    public Contact getSubject() {
+    public net.mamoe.mirai.contact.Contact getSubject() {
         return event.getFriend();
     }
 

@@ -1,12 +1,12 @@
 package top.tocome.mirai.component.contact.manager;
 
 import net.mamoe.mirai.contact.Contact;
-import top.tocome.mirai.component.ContactComponent;
+import top.tocome.mirai.component.contact.ContactOrBot;
 import top.tocome.mirai.component.contact.Friend;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.FriendEvent;
 
-public class FriendManager extends ContactComponent.Manager {
+public class FriendManager extends ContactOrBot.Manager {
 
     @Override
     protected void commandInit() {
@@ -40,7 +40,7 @@ public class FriendManager extends ContactComponent.Manager {
     }
 
     @Override
-    public ContactComponent add() {
+    public ContactOrBot add() {
         Friend friend = new Friend(getSubject().getId());
         contacts.add(friend);
         return friend;

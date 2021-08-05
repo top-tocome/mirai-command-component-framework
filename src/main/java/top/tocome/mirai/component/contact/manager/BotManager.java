@@ -2,13 +2,13 @@ package top.tocome.mirai.component.contact.manager;
 
 import net.mamoe.mirai.event.events.FriendEvent;
 import net.mamoe.mirai.event.events.GroupEvent;
-import top.tocome.mirai.component.ContactComponent;
+import top.tocome.mirai.component.contact.ContactOrBot;
 import top.tocome.mirai.component.contact.Bot;
 import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.BotEvent;
 
-public final class BotManager extends ContactComponent.Manager {
+public final class BotManager extends ContactOrBot.Manager {
 
     public static final BotManager Instance = new BotManager();
 
@@ -48,7 +48,7 @@ public final class BotManager extends ContactComponent.Manager {
     }
 
     @Override
-    public ContactComponent add() {
+    public ContactOrBot add() {
         Bot bot = new Bot(event.getBot().getId());
         contacts.add(bot);
         return bot;

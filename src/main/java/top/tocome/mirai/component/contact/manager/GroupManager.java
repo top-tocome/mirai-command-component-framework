@@ -3,10 +3,10 @@ package top.tocome.mirai.component.contact.manager;
 import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.GroupEvent;
-import top.tocome.mirai.component.ContactComponent;
+import top.tocome.mirai.component.contact.ContactOrBot;
 import top.tocome.mirai.component.contact.Group;
 
-public class GroupManager extends ContactComponent.Manager {
+public class GroupManager extends ContactOrBot.Manager {
 
     @Override
     protected void commandInit() {
@@ -41,7 +41,7 @@ public class GroupManager extends ContactComponent.Manager {
     }
 
     @Override
-    public ContactComponent add() {
+    public ContactOrBot add() {
         Group group = new Group(getSubject().getId());
         contacts.add(group);
         return group;
