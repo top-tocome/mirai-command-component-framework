@@ -48,7 +48,7 @@ public abstract class CommandComponent extends AbstractComponent {
 
     @Override
     protected boolean enable() {
-        if (commandSet != null && commandSet.match(commandMessage)) return true;
+        if (commandMessage != null && commandSet != null && commandSet.match(commandMessage)) return true;
         return common();
     }
 
