@@ -32,7 +32,7 @@ public class Bot extends ContactComponent {
     private final FriendManager friendManager = new FriendManager();
 
     @Override
-    protected boolean commandNext(String commandMessage) {
+    protected boolean common() {
         if (event instanceof GroupEvent)
             return groupManager.invoke(event, commandMessage);
         else if (event instanceof FriendEvent)

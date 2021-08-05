@@ -48,26 +48,14 @@ public abstract class CommandComponent extends AbstractComponent {
 
     @Override
     protected boolean enable() {
-        return commandMessage != null ? command() : common();
+        if (commandSet != null && commandSet.match(commandMessage)) return true;
+        return common();
     }
 
     /**
      * 该组件的普通功能
      */
     protected abstract boolean common();
-
-    /**
-     * 匹配该组件的指令集
-     */
-    private boolean command() {
-        if (commandSet != null && commandSet.match(commandMessage)) return true;
-        return commandNext(commandMessage);
-    }
-
-    /**
-     * 指令集匹配失败后调用
-     */
-    protected abstract boolean commandNext(String commandMessage);
 
     /**
      * 获取消息来源

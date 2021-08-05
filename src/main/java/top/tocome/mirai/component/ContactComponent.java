@@ -34,11 +34,6 @@ public abstract class ContactComponent extends CommandComponent {
         return attachedComponents;
     }
 
-    @Override
-    protected boolean common() {
-        return commandNext(null);
-    }
-
     /**
      * 联系人管理型组件
      * 记录每个用户对此bot的使用状态
@@ -70,10 +65,6 @@ public abstract class ContactComponent extends CommandComponent {
          */
         protected abstract ContactComponent add();
 
-        @Override
-        protected boolean common() {
-            return commandNext(null);
-        }
     }
 }
 

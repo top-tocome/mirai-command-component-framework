@@ -29,7 +29,7 @@ public final class BotManager extends ContactComponent.Manager {
     }
 
     @Override
-    protected boolean commandNext(String commandMessage) {
+    protected boolean common() {
         return getContact(event.getBot().getId()).invoke(event, commandMessage);
     }
 

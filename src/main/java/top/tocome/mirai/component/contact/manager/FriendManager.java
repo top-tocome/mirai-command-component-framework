@@ -25,7 +25,7 @@ public class FriendManager extends ContactComponent.Manager {
     }
 
     @Override
-    protected boolean commandNext(String commandMessage) {
+    protected boolean common() {
         return getContact(getSubject().getId()).invoke(event, commandMessage);
     }
 

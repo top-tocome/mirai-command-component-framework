@@ -26,7 +26,7 @@ public class Group extends ContactComponent {
     }
 
     @Override
-    protected boolean commandNext(String commandMessage) {
+    protected boolean common() {
         for (AttachedComponent attachedComponent : attachedComponents) {
             if (attachedComponent.invoke(event, commandMessage)) return true;
         }

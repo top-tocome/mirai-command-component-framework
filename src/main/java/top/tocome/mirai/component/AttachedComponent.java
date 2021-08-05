@@ -22,11 +22,6 @@ public abstract class AttachedComponent extends CommandComponent {
     }
 
     @Override
-    protected boolean commandNext(String commandMessage) {
-        return false;
-    }
-
-    @Override
     public Contact getSubject() {
         return event.getSubject();
     }
