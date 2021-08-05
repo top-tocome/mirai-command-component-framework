@@ -30,13 +30,13 @@ public class Command {
     }
 
     /**
-     * 属于哪一个命令组件
+     * 归属的命令组件
      */
     protected CommandComponent component;
     /**
      * 触发指令的关键词
      */
-    protected String key;
+    public String key;
     /**
      * 指令匹配成功后执行的动作
      */
@@ -53,7 +53,7 @@ public class Command {
     /**
      * 指令描述
      */
-    protected String describe = "";
+    public String describe = "";
 
     /**
      * 匹配指令
@@ -88,36 +88,26 @@ public class Command {
     /**
      * 获取整条指令完整描述
      *
-     * @return 完整描述
+     * @return totalKey+paramsHint+describe
      */
     protected String getHelp() {
-        return getKey() + showParamsHint() + getDescribe() + "\n";
-    }
-
-    protected String getDescribe() {
-        return describeRegex + describe;
+        return getTotalKey() + showParamsHint() + describeRegex + describe + "\n";
     }
 
     /**
      * 获取完整的指令关键词
      *
-     * @return 完整的指令关键词
+     * @return parentKey+key
      */
-    public String getKey() {
+    protected String getTotalKey() {
         if (parentSet == null) {
             return startRegex + key;
         }
-        return parentSet.getKey() + secondRegex + key;
-    }
-
-    public String getDefaultHint() {
-        return getHelp() + "输入 " + getKey() + Command.secondRegex + "help获取帮助";
+        return parentSet.getTotalKey() + secondRegex + key;
     }
 
     /**
      * 参数展示
-     *
-     * @return 参数要求
      */
     protected String showParamsHint() {
         StringBuilder sb = new StringBuilder();

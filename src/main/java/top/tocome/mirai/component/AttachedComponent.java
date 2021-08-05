@@ -34,13 +34,13 @@ public abstract class AttachedComponent extends CommandComponent {
     @Override
     protected boolean disable() {
         if (commandMessage == null) return false;
-        if (commandMessage.equals(commandSet.getKey() + Command.secondRegex + "start")) {
+        if (commandMessage.equals(commandSet.key + Command.secondRegex + "start")) {
             setActive(true);
-            getSubject().sendMessage(commandSet.getKey() + "启动成功");
+            getSubject().sendMessage(commandSet.key + "启动成功");
             return true;
-        } else if (commandMessage.equals(commandSet.getKey())) {
+        } else if (commandMessage.equals(commandSet.key)) {
             getSubject().sendMessage("该组件已停用，请输入\n"
-                    + commandSet.getKey() + Command.secondRegex + "start\n" + "重新启用");
+                    + commandSet.key + Command.secondRegex + "start\n" + "重新启用");
         }
         return false;
     }

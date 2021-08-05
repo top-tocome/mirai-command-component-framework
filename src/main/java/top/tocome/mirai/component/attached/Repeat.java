@@ -27,12 +27,15 @@ public class Repeat extends AttachedComponent {
         if (message.equals(lastMessage)) {
             event.getSubject().sendMessage(event.getMessage());
             lastRepeat = message;
+            return true;
         } else if (message.equals(lastRepeat)) {
             event.getSubject().sendMessage("打断复读");
             lastMessage = null;
+            lastRepeat = null;
+            return true;
         } else {
             lastMessage = message;
+            return false;
         }
-        return false;
     }
 }

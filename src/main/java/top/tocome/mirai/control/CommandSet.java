@@ -48,4 +48,11 @@ public class CommandSet extends Command {
             super.matchAction(message);
         }
     }
+
+    /**
+     * @return 默认帮助提示
+     */
+    public String getDefaultHint() {
+        return getHelp() + "输入 " + getTotalKey() + Command.secondRegex + "help获取帮助";
+    }
 }
