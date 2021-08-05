@@ -7,6 +7,7 @@ import top.tocome.mirai.component.contact.Bot;
 import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.BotEvent;
+import top.tocome.mirai.util.Logger;
 
 public final class BotManager extends ContactOrBot.Manager {
 
@@ -51,6 +52,7 @@ public final class BotManager extends ContactOrBot.Manager {
     public ContactOrBot add() {
         Bot bot = new Bot(event.getBot().getId());
         contacts.add(bot);
+        Logger.info("add new Bot:" + bot.getId());
         return bot;
     }
 }

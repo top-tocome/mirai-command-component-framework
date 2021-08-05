@@ -1,6 +1,7 @@
 package top.tocome.mirai.control;
 
 import top.tocome.mirai.component.CommandComponent;
+import top.tocome.mirai.util.Logger;
 
 /**
  * 单条指令
@@ -81,6 +82,7 @@ public class Command {
         }
         if (params.length == paramsHint.length) {
             action.run(params);
+            Logger.info(getTotalKey() + "  command matched and run");
         } else
             component.getSubject().sendMessage(startRegex + "error:params not match\n");
     }

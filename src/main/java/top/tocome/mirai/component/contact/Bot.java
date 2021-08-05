@@ -7,6 +7,7 @@ import net.mamoe.mirai.event.events.FriendEvent;
 import net.mamoe.mirai.event.events.GroupEvent;
 import top.tocome.mirai.component.contact.manager.FriendManager;
 import top.tocome.mirai.component.contact.manager.GroupManager;
+import top.tocome.mirai.util.Logger;
 
 public class Bot extends ContactOrBot {
 
@@ -36,7 +37,10 @@ public class Bot extends ContactOrBot {
             return groupManager.invoke(event, commandMessage);
         else if (event instanceof FriendEvent)
             return friendManager.invoke(event, commandMessage);
-        else return false;
+        else {
+            Logger.error("no matched Event:" + event.getClass().getSimpleName());
+            return false;
+        }
     }
 
     @Override

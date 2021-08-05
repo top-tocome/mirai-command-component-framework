@@ -2,8 +2,8 @@ package top.tocome.mirai.component.contact;
 
 
 import net.mamoe.mirai.event.Event;
+import net.mamoe.mirai.event.events.BotEvent;
 import net.mamoe.mirai.event.events.FriendEvent;
-import top.tocome.mirai.component.AttachedComponent;
 
 public class Friend extends Contact {
 
@@ -24,15 +24,6 @@ public class Friend extends Contact {
         return true;
     }
 
-
-    @Override
-    protected boolean common() {
-        for (AttachedComponent attachedComponent : attachedComponents) {
-            if (attachedComponent.invoke(event, commandMessage)) return true;
-        }
-        return false;
-    }
-
     @Override
     public net.mamoe.mirai.contact.Contact getSubject() {
         return event.getFriend();
@@ -43,4 +34,8 @@ public class Friend extends Contact {
         return false;
     }
 
+    @Override
+    protected BotEvent getEvent() {
+        return event;
+    }
 }

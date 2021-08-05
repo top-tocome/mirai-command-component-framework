@@ -5,6 +5,7 @@ import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.GroupEvent;
 import top.tocome.mirai.component.contact.ContactOrBot;
 import top.tocome.mirai.component.contact.Group;
+import top.tocome.mirai.util.Logger;
 
 public class GroupManager extends ContactOrBot.Manager {
 
@@ -44,6 +45,8 @@ public class GroupManager extends ContactOrBot.Manager {
     public ContactOrBot add() {
         Group group = new Group(getSubject().getId());
         contacts.add(group);
+        Logger.info("add new Group:" + group.getId() + "\nName:" + event.getGroup().getName()
+                + "\nbelong to Bot:" + getSubject().getBot().getId());
         return group;
     }
 }

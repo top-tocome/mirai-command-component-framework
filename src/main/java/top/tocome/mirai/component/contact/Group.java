@@ -1,8 +1,8 @@
 package top.tocome.mirai.component.contact;
 
 import net.mamoe.mirai.event.Event;
+import net.mamoe.mirai.event.events.BotEvent;
 import net.mamoe.mirai.event.events.GroupEvent;
-import top.tocome.mirai.component.AttachedComponent;
 
 public class Group extends Contact {
 
@@ -24,14 +24,6 @@ public class Group extends Contact {
     }
 
     @Override
-    protected boolean common() {
-        for (AttachedComponent attachedComponent : attachedComponents) {
-            if (attachedComponent.invoke(event, commandMessage)) return true;
-        }
-        return false;
-    }
-
-    @Override
     public net.mamoe.mirai.contact.Contact getSubject() {
         return event.getGroup();
     }
@@ -39,5 +31,10 @@ public class Group extends Contact {
     @Override
     protected boolean disable() {
         return false;
+    }
+
+    @Override
+    protected BotEvent getEvent() {
+        return event;
     }
 }
