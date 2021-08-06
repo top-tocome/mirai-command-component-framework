@@ -16,7 +16,7 @@ public final class JavaPluginMain extends JavaPlugin {
     public static final JavaPluginMain INSTANCE = new JavaPluginMain(); // 必须 public static, 必须名为 INSTANCE
 
     private JavaPluginMain() {
-        super(new JvmPluginDescriptionBuilder("top.tocome.mirai.plugin", "0.0.2")
+        super(new JvmPluginDescriptionBuilder("top.tocome.mirai.plugin", "0.0.3")
                 .author("tocome")
                 .build()
         );

@@ -24,7 +24,7 @@ public class Repeat extends AttachedComponent {
     @Override
     protected boolean common() {
         String message = event.getMessage().serializeToMiraiCode();
-        if (message.equals(lastMessage)) {
+        if (message.equals(lastMessage) && !message.equals(lastRepeat)) {
             event.getSubject().sendMessage(event.getMessage());
             lastRepeat = message;
             return true;

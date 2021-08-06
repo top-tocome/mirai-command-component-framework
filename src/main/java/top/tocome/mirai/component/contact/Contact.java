@@ -20,8 +20,33 @@ public abstract class Contact extends ContactOrBot {
      */
     protected final ArrayList<AttachedComponent> attachedComponents;
 
-    public ArrayList<AttachedComponent> getComponents() {
-        return attachedComponents;
+    /**
+     * 添加一个组件
+     */
+    public void add(AttachedComponent attachedComponent) {
+        attachedComponents.add(attachedComponent);
+    }
+
+    /**
+     * 移除组件
+     */
+    public boolean remove(int i) {
+        if (i >= attachedComponents.size()) return false;
+        attachedComponents.remove(i);
+        return true;
+    }
+
+    /**
+     * @return 已有组件列表
+     */
+    public String list() {
+        StringBuilder stringBuilder = new StringBuilder("已有组件:\n");
+        int i = 0;
+        for (AttachedComponent c : attachedComponents) {
+            stringBuilder.append(i).append(" : ").append(c.getClass().getSimpleName()).append("\n");
+            i++;
+        }
+        return stringBuilder.toString();
     }
 
     @Override
