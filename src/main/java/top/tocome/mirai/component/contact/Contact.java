@@ -1,9 +1,9 @@
 package top.tocome.mirai.component.contact;
 
 import net.mamoe.mirai.event.events.BotEvent;
-import top.tocome.mirai.component.AttachedComponent;
-import top.tocome.mirai.component.util.ComponentManager;
-import top.tocome.mirai.util.Logger;
+import top.tocome.mirai.component.attached.AttachedComponent;
+import top.tocome.mirai.component.attached.ComponentManager;
+import top.tocome.mirai.utils.Logger;
 
 import java.util.ArrayList;
 

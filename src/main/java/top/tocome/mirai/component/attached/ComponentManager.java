@@ -1,7 +1,7 @@
-package top.tocome.mirai.component.util;
+package top.tocome.mirai.component.attached;
 
-import top.tocome.mirai.component.AttachedComponent;
 import top.tocome.mirai.component.contact.Contact;
+import top.tocome.mirai.component.utils.ComponentFactory;
 import top.tocome.mirai.control.CommandSetBuilder;
 
 public class ComponentManager extends AttachedComponent {
@@ -57,11 +57,6 @@ public class ComponentManager extends AttachedComponent {
 
     @Override
     protected boolean common() {
-        return false;
-    }
-
-    @Override
-    protected boolean disable() {
         return false;
     }
 }

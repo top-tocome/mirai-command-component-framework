@@ -7,7 +7,7 @@ import top.tocome.mirai.component.contact.Bot;
 import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.BotEvent;
-import top.tocome.mirai.util.Logger;
+import top.tocome.mirai.utils.Logger;
 
 public final class BotManager extends ContactOrBot.Manager {
 

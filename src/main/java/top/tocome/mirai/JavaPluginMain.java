@@ -1,16 +1,13 @@
-package top.tocome.mirai.plugin;
+package top.tocome.mirai;
 
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 import net.mamoe.mirai.event.GlobalEventChannel;
 import net.mamoe.mirai.event.events.BotEvent;
 import net.mamoe.mirai.event.events.MessageEvent;
-import top.tocome.mirai.component.attached.KeyWord;
-import top.tocome.mirai.component.attached.Repeat;
 import top.tocome.mirai.component.contact.manager.BotManager;
-import top.tocome.mirai.component.util.ComponentFactory;
 import top.tocome.mirai.control.Command;
-import top.tocome.mirai.util.Logger;
+import top.tocome.mirai.utils.Logger;
 
 public final class JavaPluginMain extends JavaPlugin {
     public static final JavaPluginMain INSTANCE = new JavaPluginMain(); // 必须 public static, 必须名为 INSTANCE
@@ -20,8 +17,6 @@ public final class JavaPluginMain extends JavaPlugin {
                 .author("tocome")
                 .build()
         );
-        ComponentFactory.Instance.load(Repeat.class);
-        ComponentFactory.Instance.load(KeyWord.class);
     }
 
     @Override

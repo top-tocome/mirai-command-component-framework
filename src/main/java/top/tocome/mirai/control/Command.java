@@ -1,7 +1,7 @@
 package top.tocome.mirai.control;
 
 import top.tocome.mirai.component.CommandComponent;
-import top.tocome.mirai.util.Logger;
+import top.tocome.mirai.utils.Logger;
 
 /**
  * 单条指令

@@ -8,7 +8,7 @@ import net.mamoe.mirai.event.events.GroupEvent;
 import net.mamoe.mirai.event.events.MessagePreSendEvent;
 import top.tocome.mirai.component.contact.manager.FriendManager;
 import top.tocome.mirai.component.contact.manager.GroupManager;
-import top.tocome.mirai.util.Logger;
+import top.tocome.mirai.utils.Logger;
 
 public class Bot extends ContactOrBot {
 

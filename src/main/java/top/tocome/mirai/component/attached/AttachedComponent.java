@@ -1,8 +1,9 @@
-package top.tocome.mirai.component;
+package top.tocome.mirai.component.attached;
 
 import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.MessageEvent;
+import top.tocome.mirai.component.CommandComponent;
 import top.tocome.mirai.control.Command;
 
 /**

@@ -1,4 +1,4 @@
-package top.tocome.mirai.util;
+package top.tocome.mirai.utils;
 
 import net.mamoe.mirai.utils.MiraiLogger;
 

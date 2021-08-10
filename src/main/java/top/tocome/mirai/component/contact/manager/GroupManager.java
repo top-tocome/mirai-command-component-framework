@@ -5,7 +5,7 @@ import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.GroupEvent;
 import top.tocome.mirai.component.contact.ContactOrBot;
 import top.tocome.mirai.component.contact.Group;
-import top.tocome.mirai.util.Logger;
+import top.tocome.mirai.utils.Logger;
 
 public class GroupManager extends ContactOrBot.Manager {
 

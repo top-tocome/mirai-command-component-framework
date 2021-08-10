@@ -5,7 +5,7 @@ import top.tocome.mirai.component.contact.ContactOrBot;
 import top.tocome.mirai.component.contact.Friend;
 import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.FriendEvent;
-import top.tocome.mirai.util.Logger;
+import top.tocome.mirai.utils.Logger;
 
 public class FriendManager extends ContactOrBot.Manager {
 

@@ -1,7 +1,7 @@
-package top.tocome.mirai.component.util;
+package top.tocome.mirai.component.utils;
 
-import top.tocome.mirai.component.AttachedComponent;
-import top.tocome.mirai.util.Logger;
+import top.tocome.mirai.component.attached.AttachedComponent;
+import top.tocome.mirai.utils.Logger;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public final class ComponentFactory {
         classs.add(c);
     }
 
-    protected AttachedComponent newComponent(int i) {
+    public AttachedComponent newComponent(int i) {
         try {
             return classs.get(i).newInstance();
         } catch (Exception e) {
@@ -32,7 +32,7 @@ public final class ComponentFactory {
         return null;
     }
 
-    protected String list() {
+    public String list() {
         StringBuilder stringBuilder = new StringBuilder("所有组件:\n");
         int i = 0;
         for (Class<? extends AttachedComponent> c : classs) {
