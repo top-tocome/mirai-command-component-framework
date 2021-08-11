@@ -21,6 +21,7 @@ public final class ComponentFactory {
             }
         }
         classs.add(c);
+        Logger.info("load attachedComponent ok:" + c.getName());
     }
 
     public AttachedComponent newComponent(int i) {

@@ -8,7 +8,10 @@ import top.tocome.mirai.component.contact.manager.BotManager;
 import top.tocome.mirai.control.Command;
 import top.tocome.mirai.utils.Logger;
 
-public class EventManager implements Component {
+/**
+ * mirai事件管理
+ */
+public final class EventManager implements Component {
 
     public static final EventManager Instance = new EventManager();
 
