@@ -16,6 +16,8 @@ public final class FrameworkEntry {
     private FrameworkEntry() {
     }
 
+    private boolean isRunning = false;
+
     public FrameworkEntry loginBot(long qq, String password) {
         BotFactory.INSTANCE.newBot(qq, password).login();
         return this;
@@ -27,6 +29,8 @@ public final class FrameworkEntry {
     }
 
     public void run() {
+        if (isRunning) return;
         GlobalEventChannel.INSTANCE.subscribeAlways(BotEvent.class, EventManager.Instance::invoke);
+        isRunning = true;
     }
 }
