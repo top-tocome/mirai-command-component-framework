@@ -5,7 +5,6 @@ import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.BotEvent;
 import net.mamoe.mirai.event.events.FriendEvent;
 import net.mamoe.mirai.event.events.GroupEvent;
-import net.mamoe.mirai.event.events.MessagePreSendEvent;
 import top.tocome.mirai.component.contact.manager.FriendManager;
 import top.tocome.mirai.component.contact.manager.GroupManager;
 import top.tocome.mirai.utils.Logger;
@@ -38,9 +37,7 @@ public class Bot extends ContactOrBot {
             return groupManager.invoke(event, commandMessage);
         else if (event instanceof FriendEvent)
             return friendManager.invoke(event, commandMessage);
-        else if (event instanceof MessagePreSendEvent) {
-            Logger.info("机器人正在发送消息...");
-        } else {
+        else {
             Logger.error("no matched Event:" + event.getClass().getSimpleName());
         }
         return false;
