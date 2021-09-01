@@ -9,6 +9,10 @@
     <packaging>pom</packaging>
     <version>0.0.4</version>
 
+    <modules>
+        <module>commonly-used-tools</module>
+    </modules>
+
     <properties>
         <javadoc.skip>false</javadoc.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,6 +21,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>top.tocome</groupId>
+            <artifactId>commonly-used-tools</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <dependency>
             <groupId>net.mamoe</groupId>
             <artifactId>mirai-core-jvm</artifactId>
