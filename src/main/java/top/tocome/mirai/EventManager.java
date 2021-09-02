@@ -5,7 +5,6 @@ import net.mamoe.mirai.event.events.BotPassiveEvent;
 import net.mamoe.mirai.event.events.MessageEvent;
 import top.tocome.mirai.component.Component;
 import top.tocome.mirai.component.contact.manager.BotManager;
-import top.tocome.mirai.control.Command;
 import top.tocome.mirai.utils.Logger;
 
 /**
@@ -18,14 +17,16 @@ public final class EventManager implements Component {
     private EventManager() {
     }
 
+    public static String CommandStartRegex = ">";
+
     @Override
     public boolean invoke(Event event) {
         if (event instanceof BotPassiveEvent) {
             if (event instanceof MessageEvent) {//检测指令系统
-                String message = ((MessageEvent) event).getMessage().serializeToMiraiCode().trim();
-                if (message.startsWith(Command.startRegex)) {
+                String message = ((MessageEvent) event).getMessage().serializeToMiraiCode();
+                if (message.startsWith(CommandStartRegex)) {
                     return BotManager.Instance.invoke(event,
-                            message.replaceFirst(Command.startRegex, "").trim());
+                            message.replaceFirst(CommandStartRegex, ""));
                 }
             }
             return BotManager.Instance.invoke(event);

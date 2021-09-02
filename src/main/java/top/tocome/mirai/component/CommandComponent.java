@@ -2,7 +2,9 @@ package top.tocome.mirai.component;
 
 import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
-import top.tocome.mirai.control.CommandSet;
+import top.tocome.control.command.Command;
+import top.tocome.control.command.CommandSet;
+import top.tocome.mirai.utils.Logger;
 
 /**
  * 包含消息指令的组件
@@ -26,6 +28,7 @@ public abstract class CommandComponent extends AbstractComponent {
 
     /**
      * 指令消息内容
+     * mirai码形式
      */
     protected String commandMessage;
 
@@ -48,7 +51,16 @@ public abstract class CommandComponent extends AbstractComponent {
 
     @Override
     protected boolean enable() {
-        if (commandMessage != null && commandSet != null && commandSet.match(commandMessage)) return true;
+        if (commandMessage != null && commandSet != null) {
+            Command.MatchResult result = commandSet.match(commandMessage);
+            if (result != Command.MatchResult.Failed) {
+                if (result == Command.MatchResult.Success)
+                    Logger.info(commandMessage + result.errorHint);
+                else
+                    getSubject().sendMessage(result.errorHint);
+                return true;
+            }
+        }
         return common();
     }
 
