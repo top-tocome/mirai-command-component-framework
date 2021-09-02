@@ -3,7 +3,7 @@ package top.tocome.mirai.utils;
 import net.mamoe.mirai.utils.MiraiLogger;
 
 public class Logger {
-    private static final MiraiLogger logger = MiraiLogger.create("tocome");
+    private static final MiraiLogger logger = MiraiLogger.Factory.INSTANCE.create(Logger.class,"To");
 
     public static void info(String info) {
         logger.info(info);
