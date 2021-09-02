@@ -1,46 +1,70 @@
 package top.tocome.mirai.component;
 
-import net.mamoe.mirai.contact.Contact;
 import net.mamoe.mirai.event.Event;
+import net.mamoe.mirai.event.events.MessageEvent;
 import top.tocome.control.command.Command;
 import top.tocome.control.command.CommandSet;
+import top.tocome.control.command.CommandSetBuilder;
 import top.tocome.mirai.utils.Logger;
 
 /**
  * 包含消息指令的组件
  */
-public abstract class CommandComponent extends AbstractComponent {
+public abstract class CommandComponent extends Component implements ICommandComponent {
 
-    public CommandComponent() {
-        commandInit();
-    }
+    /**
+     * 组件的名称
+     */
+    protected String name = getClass().getSimpleName();
 
     /**
      * 该组件的指令集
+     * 默认已含有 `key-stop` 和 `key-help`
+     * 默认key为{@link #name}
      */
     protected CommandSet commandSet;
-
-    /**
-     * @implSpec 指令集的初始化
-     */
-    protected abstract void commandInit();
-
 
     /**
      * 指令消息内容
      * mirai码形式
      */
-    protected String commandMessage;
+    protected String commandMsg;
+    /**
+     * 触发指令的消息事件
+     */
+    private MessageEvent messageEvent;
+
+    protected CommandComponent() {
+        commandSet = new CommandSetBuilder(name).onMatchedEvent(params -> {
+            messageEvent.getSubject().sendMessage(commandSet.getAllUsage());
+            return Command.MatchResult.Success;
+        })
+                .newCommand("help", params -> {
+                    messageEvent.getSubject().sendMessage(commandSet.getAllUsage());
+                    return Command.MatchResult.Success;
+                })
+                .newCommand("stop", params -> {
+                    setActive(false);
+                    messageEvent.getSubject().sendMessage(name + "停用成功");
+                    return Command.MatchResult.Success;
+                }).build();
+        commandSetting();
+    }
 
     /**
-     * 调用该组件
+     * 使用
+     * {@link CommandSetBuilder#CommandSetBuilder CommandSetBuilder}({@link #commandSet})
+     * 进行指令的设置
+     * 优先更改key,默认key为{@link #name}
      *
-     * @param event          mirai事件
-     * @param commandMessage null为普通调用,非空为指令匹配
-     * @return 调用结果
+     * @implSpec 添加指令到指令集
      */
-    public boolean invoke(Event event, String commandMessage) {
-        this.commandMessage = commandMessage;
+    protected abstract void commandSetting();
+
+    @Override
+    public boolean invoke(Event event, String commandMsg) {
+        this.commandMsg = commandMsg;
+        if (commandMsg != null) messageEvent = (MessageEvent) event;
         return super.invoke(event);
     }
 
@@ -51,13 +75,13 @@ public abstract class CommandComponent extends AbstractComponent {
 
     @Override
     protected boolean enable() {
-        if (commandMessage != null && commandSet != null) {
-            Command.MatchResult result = commandSet.match(commandMessage);
+        if (commandMsg != null && commandSet != null) {
+            Command.MatchResult result = commandSet.match(commandMsg);
             if (result != Command.MatchResult.Failed) {
                 if (result == Command.MatchResult.Success)
-                    Logger.info(commandMessage + result.errorHint);
+                    Logger.info(commandMsg + result.errorHint);
                 else
-                    getSubject().sendMessage(result.errorHint);
+                    messageEvent.getSubject().sendMessage(result.errorHint);
                 return true;
             }
         }
@@ -69,10 +93,19 @@ public abstract class CommandComponent extends AbstractComponent {
      */
     protected abstract boolean common();
 
-    /**
-     * 获取消息来源
-     *
-     * @apiNote 主要供指令action发送bot消息
-     */
-    public abstract Contact getSubject();
+    @Override
+    protected boolean disable() {
+        if (commandMsg != null) {
+            if (commandMsg.equals(commandSet.getKey() + Command.Prefix + "start")) {
+                setActive(true);
+                messageEvent.getSubject().sendMessage(commandSet.getKey() + "启动成功");
+                return true;
+            } else if (commandMsg.equals(commandSet.getKey())) {
+                messageEvent.getSubject().sendMessage("该组件已停用，请输入\n"
+                        + commandSet.getKey() + Command.Prefix + "start\n" + "重新启用");
+                return true;
+            }
+        }
+        return false;
+    }
 }
