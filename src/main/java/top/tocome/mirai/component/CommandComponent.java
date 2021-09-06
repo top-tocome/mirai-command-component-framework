@@ -6,6 +6,7 @@ import top.tocome.control.command.Command;
 import top.tocome.control.command.CommandSet;
 import top.tocome.control.command.CommandSetBuilder;
 import top.tocome.mirai.utils.Logger;
+import top.tocome.utils.Error;
 
 /**
  * 包含消息指令的组件
@@ -76,12 +77,12 @@ public abstract class CommandComponent extends Component implements ICommandComp
     @Override
     protected boolean enable() {
         if (commandMsg != null && commandSet != null) {
-            Command.MatchResult result = commandSet.match(commandMsg);
-            if (result != Command.MatchResult.Failed) {
-                if (result == Command.MatchResult.Success)
-                    Logger.info(commandMsg + result.errorHint);
+            Error e = commandSet.match(commandMsg);
+            if (e != Command.MatchResult.Failed) {
+                if (e == Command.MatchResult.Success)
+                    Logger.info(commandMsg + e.getMessage());
                 else
-                    messageEvent.getSubject().sendMessage(result.errorHint);
+                    messageEvent.getSubject().sendMessage(e.getMessage());
                 return true;
             }
         }
