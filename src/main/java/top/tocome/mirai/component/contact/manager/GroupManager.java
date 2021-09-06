@@ -1,52 +1,32 @@
 package top.tocome.mirai.component.contact.manager;
 
-import net.mamoe.mirai.contact.Contact;
-import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.GroupEvent;
-import top.tocome.mirai.component.contact.ContactOrBot;
 import top.tocome.mirai.component.contact.Group;
 import top.tocome.mirai.utils.Logger;
 
-public class GroupManager extends ContactOrBot.Manager {
+public class GroupManager extends ContactOrBotManager<Group> {
 
     @Override
-    protected void commandInit() {
+    protected void commandSetting() {
 
     }
 
     private GroupEvent event;
 
     @Override
-    protected boolean setEventType(Event event) {
-        if (event instanceof GroupEvent) {
-            this.event = (GroupEvent) event;
-            return true;
-        }
-        return false;
-    }
-
-
-    @Override
     protected boolean common() {
-        return getContact(getSubject().getId()).invoke(event, commandMessage);
+        if (getEvent() instanceof GroupEvent) {
+            event = (GroupEvent) getEvent();
+            return getContact(event.getGroup().getId()).invoke(event, commandMsg);
+        } else return false;
     }
 
     @Override
-    protected boolean disable() {
-        return false;
-    }
-
-    @Override
-    public Contact getSubject() {
-        return event.getGroup();
-    }
-
-    @Override
-    public ContactOrBot add() {
-        Group group = new Group(getSubject().getId());
+    public Group add() {
+        Group group = new Group(event.getGroup().getId());
         contacts.add(group);
         Logger.info("add new Group:" + group.getId() + "\nName:" + event.getGroup().getName()
-                + "\nbelong to Bot:" + getSubject().getBot().getId());
+                + "\nbelong to Bot:" + event.getBot().getId());
         return group;
     }
 }

@@ -1,51 +1,32 @@
 package top.tocome.mirai.component.contact.manager;
 
-import net.mamoe.mirai.contact.Contact;
-import top.tocome.mirai.component.contact.ContactOrBot;
-import top.tocome.mirai.component.contact.Friend;
-import net.mamoe.mirai.event.Event;
 import net.mamoe.mirai.event.events.FriendEvent;
+import top.tocome.mirai.component.contact.Friend;
 import top.tocome.mirai.utils.Logger;
 
-public class FriendManager extends ContactOrBot.Manager {
+public class FriendManager extends ContactOrBotManager<Friend> {
 
     @Override
-    protected void commandInit() {
+    protected void commandSetting() {
 
     }
 
     private FriendEvent event;
 
     @Override
-    protected boolean setEventType(Event event) {
-        if (event instanceof FriendEvent) {
-            this.event = (FriendEvent) event;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
     protected boolean common() {
-        return getContact(getSubject().getId()).invoke(event, commandMessage);
+        if (getEvent() instanceof FriendEvent) {
+            event = (FriendEvent) getEvent();
+            return getContact(event.getFriend().getId()).invoke(event, commandMsg);
+        } else return false;
     }
 
     @Override
-    protected boolean disable() {
-        return false;
-    }
-
-    @Override
-    public Contact getSubject() {
-        return event.getFriend();
-    }
-
-    @Override
-    public ContactOrBot add() {
-        Friend friend = new Friend(getSubject().getId());
+    public Friend add() {
+        Friend friend = new Friend(event.getFriend().getId());
         contacts.add(friend);
         Logger.info("add new Friend:" + friend.getId() + "\nNick:" + event.getFriend().getNick()
-                + "\nbelong to Bot:" + getSubject().getBot().getId());
+                + "\nbelong to Bot:" + event.getBot().getId());
         return friend;
     }
 }
