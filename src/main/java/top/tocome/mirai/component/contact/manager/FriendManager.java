@@ -4,7 +4,7 @@ import net.mamoe.mirai.event.events.FriendEvent;
 import top.tocome.mirai.component.contact.Friend;
 import top.tocome.mirai.utils.Logger;
 
-public class FriendManager extends ContactOrBotManager<Friend> {
+public class FriendManager extends ContactOrBotManager<Friend> implements AttachedToBot{
 
     @Override
     protected void commandSetting() {
