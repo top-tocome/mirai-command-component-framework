@@ -6,12 +6,7 @@
 
     <groupId>top.tocome</groupId>
     <artifactId>mirai-command-component-framework</artifactId>
-    <packaging>pom</packaging>
     <version>0.0.4</version>
-
-    <modules>
-        <module>commonly-used-tools</module>
-    </modules>
 
     <properties>
         <javadoc.skip>false</javadoc.skip>
