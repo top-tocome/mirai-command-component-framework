@@ -6,10 +6,26 @@
 
     <groupId>top.tocome</groupId>
     <artifactId>mirai-command-component-framework</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.1-dev</version>
+
+    <packaging>jar</packaging>
+    <name>mirai-command-component-framework</name>
+    <description>Framework for easy chat-command using component mode based on mirai</description>
+    <url>https://github.com/top-tocome/mirai-command-component-framework</url>
+
+    <licenses>
+        <license>
+            <name>GNU AGPLv3</name>
+            <url>https://www.gnu.org/licenses/agpl-3.0</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/top-tocome/mirai-command-component-framework</url>
+        <connection>scm:https://github.com/top-tocome/mirai-command-component-framework.git</connection>
+    </scm>
 
     <properties>
-        <javadoc.skip>false</javadoc.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -19,7 +35,7 @@
         <dependency>
             <groupId>top.tocome</groupId>
             <artifactId>commonly-used-tools</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.1-dev</version>
         </dependency>
         <dependency>
             <groupId>net.mamoe</groupId>
