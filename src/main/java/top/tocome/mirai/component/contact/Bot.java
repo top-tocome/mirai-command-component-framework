@@ -1,6 +1,6 @@
 package top.tocome.mirai.component.contact;
 
-import top.tocome.mirai.component.contact.manager.AttachedToBot;
+import top.tocome.mirai.component.attached.IAttachedComponent;
 import top.tocome.mirai.component.contact.manager.FriendManager;
 import top.tocome.mirai.component.contact.manager.GroupManager;
 import top.tocome.mirai.utils.Logger;
@@ -20,11 +20,11 @@ public class Bot extends ContactOrBot {
 
     }
 
-    private final ArrayList<AttachedToBot> components = new ArrayList<>();
+    private final ArrayList<IAttachedComponent> components = new ArrayList<>();
 
     @Override
     protected boolean common() {
-        for (AttachedToBot c : components) {
+        for (IAttachedComponent c : components) {
             if (c.invoke(getEvent(), commandMsg)) {
                 return true;
             }

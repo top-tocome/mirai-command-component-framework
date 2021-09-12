@@ -1,10 +1,11 @@
 package top.tocome.mirai.component.contact.manager;
 
 import net.mamoe.mirai.event.events.FriendEvent;
+import top.tocome.mirai.component.attached.IAttachedComponent;
 import top.tocome.mirai.component.contact.Friend;
 import top.tocome.mirai.utils.Logger;
 
-public class FriendManager extends ContactOrBotManager<Friend> implements AttachedToBot{
+public class FriendManager extends ContactOrBotManager<Friend> implements IAttachedComponent {
 
     @Override
     protected void commandSetting() {

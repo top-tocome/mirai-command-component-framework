@@ -1,6 +1,6 @@
 package top.tocome.mirai.component.contact;
 
-import top.tocome.mirai.component.attached.AttachedComponent;
+import top.tocome.mirai.component.attached.IAttachedComponent;
 import top.tocome.mirai.component.attached.ComponentManager;
 import top.tocome.mirai.utils.Logger;
 
@@ -16,11 +16,11 @@ public abstract class Contact extends ContactOrBot {
     /**
      * 附着的组件
      */
-    protected final ArrayList<AttachedComponent> components = new ArrayList<>();
+    protected final ArrayList<IAttachedComponent> components = new ArrayList<>();
 
     @Override
     protected boolean common() {
-        for (AttachedComponent c : components) {
+        for (IAttachedComponent c : components) {
             if (c.invoke(getEvent(), commandMsg)) {
                 Logger.info(c.getClass().getName() + " run success");
                 return true;
@@ -32,7 +32,7 @@ public abstract class Contact extends ContactOrBot {
     /**
      * 添加一个组件
      */
-    public void add(AttachedComponent c) {
+    public void add(IAttachedComponent c) {
         components.add(c);
     }
 
@@ -51,7 +51,7 @@ public abstract class Contact extends ContactOrBot {
     public String list() {
         StringBuilder stringBuilder = new StringBuilder("已有组件:\n");
         int i = 0;
-        for (AttachedComponent c : components) {
+        for (IAttachedComponent c : components) {
             stringBuilder.append(i).append(" : ").append(c.getClass().getSimpleName()).append("\n");
             i++;
         }

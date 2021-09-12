@@ -1,8 +1,5 @@
 package top.tocome.mirai;
 
-/**
- * 不作为 mirai-console-plugin 使用
- */
 public class RunMirai {
     public static void main(String[] args) {
         FrameworkEntry.Instance

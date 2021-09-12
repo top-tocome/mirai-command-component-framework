@@ -7,7 +7,7 @@ import top.tocome.mirai.component.utils.ComponentFactory;
 import top.tocome.mirai.component.utils.Message;
 import top.tocome.utils.Strings;
 
-public class ComponentManager extends AttachedComponent {
+public class ComponentManager extends MessageComponent {
 
     protected Contact contact;
 
@@ -31,7 +31,7 @@ public class ComponentManager extends AttachedComponent {
                             int i = Strings.parseInt(params[0], -1);
                             if (i == -1) return Command.MatchResult.ParamError;
 
-                            AttachedComponent c = ComponentFactory.Instance.newComponent(i);
+                            IAttachedComponent c = ComponentFactory.Instance.newComponent(i);
                             if (c == null)
                                 return new Message("添加失败");
                             else {
@@ -52,7 +52,7 @@ public class ComponentManager extends AttachedComponent {
     }
 
     @Override
-    protected boolean common() {
+    protected boolean dealt() {
         return false;
     }
 }

@@ -3,7 +3,7 @@ package top.tocome.mirai;
 import net.mamoe.mirai.BotFactory;
 import net.mamoe.mirai.event.GlobalEventChannel;
 import net.mamoe.mirai.event.events.BotEvent;
-import top.tocome.mirai.component.attached.AttachedComponent;
+import top.tocome.mirai.component.attached.IAttachedComponent;
 import top.tocome.mirai.component.utils.ComponentFactory;
 
 /**
@@ -23,7 +23,7 @@ public final class FrameworkEntry {
         return this;
     }
 
-    public FrameworkEntry loadComponent(Class<? extends AttachedComponent> c) {
+    public FrameworkEntry loadComponent(Class<? extends IAttachedComponent> c) {
         ComponentFactory.Instance.load(c);
         return this;
     }

@@ -1,10 +1,11 @@
 package top.tocome.mirai.component.contact.manager;
 
 import net.mamoe.mirai.event.events.GroupEvent;
+import top.tocome.mirai.component.attached.IAttachedComponent;
 import top.tocome.mirai.component.contact.Group;
 import top.tocome.mirai.utils.Logger;
 
-public class GroupManager extends ContactOrBotManager<Group> implements AttachedToBot{
+public class GroupManager extends ContactOrBotManager<Group> implements IAttachedComponent {
 
     @Override
     protected void commandSetting() {
